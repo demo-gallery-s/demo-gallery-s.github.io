@@ -2,7 +2,7 @@ Everything you need to build a Svelte project, powered by [`sv`](https://github.
 
 ## Developing
 
-Install node js!
+Install node js! https://nodejs.org/en
 
 ```sh
 npm install
