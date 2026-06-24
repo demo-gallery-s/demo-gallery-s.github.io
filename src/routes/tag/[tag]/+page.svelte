@@ -11,12 +11,13 @@ import type { GalleryImage, TagSearchOption } from "$lib/code/svelteDeviantartLi
     
     let filteredImages: Array<GalleryImage> = $state([]);
     let selectedImage: GalleryImage | null = $state(null);
+    let siteParam: string = $state("");
 
     let noImages: boolean = $derived(filteredImages.length == 0);
 
     onMount(() => {
         console.log("onMount");
-        const siteParam = page.params.tag as string;
+        siteParam = page.params.tag as string;
 
         let param = sdl.getTagStringConversion(siteParam)?.searchTerm;
 
@@ -24,8 +25,7 @@ import type { GalleryImage, TagSearchOption } from "$lib/code/svelteDeviantartLi
             // const imageTags = sdl.getImageTagList();
             filteredImages = linkLibrary.filter(link => link.tags.includes(param));
         }
-    })
-
+    });
 
     function handleClick(image: GalleryImage){
         selectedImage = image
@@ -37,9 +37,15 @@ import type { GalleryImage, TagSearchOption } from "$lib/code/svelteDeviantartLi
 
 </script>
 
-<LandscapeImages linkLibrary={filteredImages} title="Landscape 1" />
-<PortriatImages linkLibrary={filteredImages} title="Portriat 1" />
+<svelte:head>
+    <title>Demo Gallery Site | {siteParam}</title>
+</svelte:head>
+
 
 {#if noImages}
-    <p>No images found with this tag...</p>
+    <h2 class="text-slate-100 text-center py-16">No images found with the tag '{siteParam}'</h2>
+    <a class="text-center" href="../tag">Go back to search</a>
+{:else}
+    <LandscapeImages linkLibrary={filteredImages} title="Landscape 1" />
+    <PortriatImages linkLibrary={filteredImages} title="Portriat 1" />
 {/if}

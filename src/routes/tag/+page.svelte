@@ -26,6 +26,10 @@
     }
 </script>
 
+<svelte:head>
+    <title>Demo Gallery Site | Search</title>
+</svelte:head>
+
 <div class="px-32">
 
     <h1 class="text-4xl font-bolder text-slate-100 my-8 py-32">Search by tag</h1>

@@ -6,15 +6,16 @@ import type { GalleryImage, TagSearchOption } from "$lib/code/svelteDeviantartLi
 
     const linkLibrary: Array<GalleryImage> = [
         ...sdl.loadImagesForGallery(),
-        ...sdl.loadImagesForGallery(),
-        ...sdl.loadImagesForGallery(),
-        ...sdl.loadImagesForGallery(),
     ];
 
     function handleClick(image: GalleryImage){
 
     }
 </script>
+
+<svelte:head>
+    <title>Demo Gallery Site</title>
+</svelte:head>
 
 <LandscapeImages linkLibrary={linkLibrary} title="Landscape 1" />
 <PortriatImages linkLibrary={linkLibrary} title="Portriat 1" />
